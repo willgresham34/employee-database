@@ -1,0 +1,26 @@
+{
+  "name": "employee-database",
+  "version": "1.0.0",
+  "description": "Allows you to easily change employee roles and deptartments in javascript",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/willgresham34/employee-database.git"
+  },
+  "author": "Will Gresham",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/willgresham34/employee-database/issues"
+  },
+  "homepage": "https://github.com/willgresham34/employee-database#readme",
+  "dependencies": {
+    "expres": "^0.0.5",
+    "express": "^4.17.1",
+    "inquirer": "^8.2.0",
+    "mysql2": "^2.3.2"
+  }
+}
