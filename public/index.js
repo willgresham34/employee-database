@@ -9,6 +9,7 @@ function entryQuestion(){
             message: 'What would you like to do?',
             choices: [
                 'Update Employee Role',
+                'Add Employee',
                 'View All Roles',
                 'Add Role',
                 'View All Departments',
@@ -22,6 +23,8 @@ function entryQuestion(){
     .then(res => {
     if (res.contQuestion === "Update Employee Role") {
         updateEmpRole();
+    }else if (res.contQuestion === "Add Employee") {
+        addEmployee();
     } else if(res.contQuestion === "View All Roles") {
         viewAllRoles();
     } else if(res.contQuestion === "Add Role") {
@@ -29,7 +32,7 @@ function entryQuestion(){
     } else if(res.contQuestion === "View All Departments") {
         viewAllDeps();        
     } else if(res.contQuestion === "Add Department") {
-        addDeps();
+        addDept();
     } else if(res.contQuestion === "View All Employees") {
         viewAllEmps();
     } else {
@@ -38,96 +41,100 @@ function entryQuestion(){
     })
     .catch(err => console.error(err)) 
 }
-    const employeeQuestions = (Cards) => {
+const addEmployee = () => {
     inquirer.prompt([
         {
             type:'input', 
-            message: 'What is your employees name?',
-            name: 'empName',
+            message: 'What is the employees first name?',
+            name: 'firstName',
         },
 
         {
-            type: 'input',
-            message: 'What is your employees ID number?',
-            name: 'empId', 
-        },
-
-        {
-            type: 'input',
-            message: 'What is your employees email?',
-            name: 'empEmail', 
-        },
-
-        {
-            type: 'input',
-            message: 'What is your employees gitHub user name?',
-            name: 'empGithub', 
+            type:'input', 
+            message: 'What is the employees last name?',
+            name: 'lastName',
         },
 
         {
             type: 'list',
-            message: 'Would you like to add employee or intern?',
+            message: 'What is the employees role?',
             choices: [
-                'Employee',
-                'Intern',
-                'No, Thank you',
+                //Insert var from database with array of roles
             ],
-            name: 'contQuestion', 
-        },
-        
-    ])
-    .then(res => {
-    if (res.contQuestion === "Employee") {
-        employeeQuestions(Cards);
-    } else if(res.contQuestion === "Intern") {
-        internQuestions(Cards);
-    } else {
-        writeHTMLFile(Cards);
-    }
-    })
-    .catch(err => console.error(err)) 
-}
-const internQuestions = () => {
-    inquirer.prompt([
-        {
-            type:'input', 
-            message: 'What is your interns name?',
-            name: 'intName',
-        },
-
-        {
-            type: 'input',
-            message: 'What is your interns ID number?',
-            name: 'intId', 
-        },
-
-        {
-            type: 'input',
-            message: 'What is your interns email?',
-            name: 'intEmail', 
-        },
-
-        {
-            type: 'input',
-            message: 'What school does your intern go to?',
-            name: 'school', 
+            name: 'empRole', 
         },
 
         {
             type: 'list',
-            message: 'Would you like to add employee or intern?',
+            message: 'Which department does the role belong to?',
             choices: [
-                'Intern',
-                'No, Thank you',
+                //insert var from database with array of depts
             ],
-            name: 'contQuestion', 
+            name: 'dept', 
         },
         
     ])
     .then(res => {
-        if(res.contQuestion === "Intern") {
-            internQuestions();
-        }        
+        console.log(`Added ${res.roleName} to the database`);
+        // create function that takes responses and puts them into the data base
+        entryQuestion();
     })
     .catch(err => console.error(err)) 
 }
+
+    const addRole = () => {
+    inquirer.prompt([
+        {
+            type:'input', 
+            message: 'What is the name of the role?',
+            name: 'roleName',
+        },
+
+        {
+            type: 'input',
+            message: 'What is the salary of the role?',
+            name: 'rolePay', 
+        },
+
+        {
+            type: 'list',
+            message: 'Which department does the role belong to?',
+            choices: [
+                'Engineering',
+                'Finance',
+                'Legal',
+                'Sales',
+                'Service',
+            ],
+            name: 'dept', 
+        },
+        
+    ])
+    .then(res => {
+        console.log(`Added ${res.roleName} to the database`);
+        // create function that takes responses and puts them into the data base
+        entryQuestion();
+    })
+    .catch(err => console.error(err)) 
+}
+
+const addDept = () => {
+    inquirer.prompt([
+        {
+            type:'input', 
+            message: 'What is the name of the department?',
+            name: 'deptName',
+        },
+    ])
+    .then(res => {
+        console.log(`Added ${res.roleName} to the database`);
+        // create function that takes responses and puts them into the data base
+        entryQuestion();
+    })
+    .catch(err => console.error(err)) 
+}
+
+entryQuestion();
+
+
+module.export = index;
