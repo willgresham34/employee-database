@@ -100,11 +100,7 @@ const addEmployee = () => {
             type: 'list',
             message: 'Which department does the role belong to?',
             choices: [
-                'Engineering',
-                'Finance',
-                'Legal',
-                'Sales',
-                'Service',
+                //insert var that contains the array of depts
             ],
             name: 'dept', 
         },
