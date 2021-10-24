@@ -1,35 +1,32 @@
 
-# README.md Generator
+# Employee Database
 [![License](https://img.shields.io/badge/License-MIT-brightgreen)](https://opensource.org/licenses/MIT)
 
 ## Description
-Makes a descriptive README.md file for your project by having you answer a few simple questions.
+Uses a database to store information about employees in a company. 
 
 ## Table Of Contents
 * [Install](#installs)
 * [Usage](#usage)
-* [Demo](#demo)
 * [license](#license)
 * [Contributing](#contributing)
 * [Test](#test)
 * [Questions](#questions)
 
 ## Installation
-Node and Inquirer
+Node, Sequalize, MySQL, Inquirer
 
 ## Usage
-![Usage Img](./develop/images/readme.png)
+![header image](./images/)
 
-## Demo
-[![Demo Img](./develop/images/youtube.png)](https://www.youtube.com/watch?v=yfcX1FomZIg)
 ## License 
 [![License](https://img.shields.io/badge/License-MIT-brightgreen)](https://opensource.org/licenses/MIT)
 
 ## Contributing
-Project finished none needed.
+None needed
 
 ## Tests 
-Test expected outputs on readme page.
+Test for the list of departments as they are set.
 
 ## Questions 
 [GitHub: willgresham34](https://github.com/willgresham34) <br> 
