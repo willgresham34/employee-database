@@ -1,6 +1,5 @@
-const fs = require("fs");
 const inquirer = require("inquirer");
-const mysql = require("mysql2");
+const mysql = require("mysql");
 const express = require("express");
 const { start } = require("repl");
 require("dotenv").config({ path: ".env" });
@@ -13,6 +12,7 @@ app.use(express.json());
 
 const db = mysql.createConnection({
   host: "localhost",
+  dialect: "mysql",
   port: 3306,
 
   user: process.env.DB_USER,
@@ -20,9 +20,24 @@ const db = mysql.createConnection({
   database: process.env.DB_NAME,
 });
 
+function startConnection() {
+  const db = mysql.createConnection({
+    host: "localhost",
+    port: 3306,
+
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+  });
+
+  db.connect((err) => {
+    if (err) throw err;
+  });
+  return db;
+}
 //Beginning Question
 function entryQuestion() {
-  // startConnection();
+  startConnection();
 
   inquirer
     .prompt([
@@ -106,13 +121,14 @@ const addEmployee = () => {
         ])
         .then((res) => {
           // create function that takes responses and puts them into the data base
-          db.query(`INSERT INTO employees`, {
+          db.query(`INSERT INTO employees SET ?`, {
             first_name: res.firstName,
             last_name: res.lastName,
             role_id: res.empRole,
             manager: res.empMang,
           });
-          console.log(`Added ${res.firstName} ${res.la} to the database`);
+
+          console.log(`Added ${res.firstName} ${res.lastName} to the database`);
           entryQuestion();
         })
         .catch((err) => console.error(err));
